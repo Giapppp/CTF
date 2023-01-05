@@ -1,0 +1,4 @@
+In RSA, when d is small but can't find by using Owiener attack, we can use Boneh_Durfee Attack
+
+Source: https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/boneh_durfee.sage
+
