@@ -1,0 +1,2 @@
+resource: https://www.ams.org/notices/199902/boneh.pdf, page 6
+When e is small and we have n pairs (N_i, c_i), we can use CRT theorem to find the message m 
