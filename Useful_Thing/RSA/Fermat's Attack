@@ -1,0 +1,15 @@
+Suppose that N = p*q
+Fermat's factorization method can factor N into p and q very quickly if p and q share half of their leading bits, i.e if (p-q)^4 < N
+Resources: 
+  + https://facthacks.cr.yp.to/fermat.html
+  + https://bitsdeep.com/posts/attacking-rsa-for-fun-and-ctf-points-part-2/
+Sage code: from https://facthacks.cr.yp.to/fermat.html
+
+def fermatfactor(N):
+  if N <= 0: return [N]
+  if is_even(N): return [2,N/2]
+  a = ceil(sqrt(N))
+  while not is_square(a^2-N):
+    a = a + 1
+    b = sqrt(a^2-N)
+  return [a - b,a + b]
