@@ -1,0 +1,9 @@
+Suppose we have the modulus N, message m, exponent e, 2 ciphertexts c1, c2 and 2 pairs (a1, b1), (a2, b2) such that:
+    N | (a1*m + b1)**e - c1 
+    N | (a2*m + b2)**e - c2
+Then m is the common root of two polynomials:
+    f(x) = (a1*x + b1)**e - c1
+    g(x) = (a2*x + b2)**e - c2
+If both of them have the root m, then they are both divisible by (x - m). We just need to solve x - m = 0 and we are done!
+
+Resource: https://www.ams.org/notices/199902/boneh.pdf, page 7
