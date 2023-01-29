@@ -19,4 +19,4 @@ def nth_root(x, n):
             return mid
     return mid + 1
 
-or you can use iroot(x, n) from gmpy2, this is a very useful function! 
+#oryou can use iroot(x, n) from gmpy2, this is a very useful function! 
