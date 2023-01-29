@@ -1,3 +1,5 @@
+#Sources: https://github.com/victim1307
+
 def small_roots(f, bounds, m=1, d=None):
 	if not d:
 		d = f.degree()
