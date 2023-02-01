@@ -1,7 +1,7 @@
 #!/bin/usr/env sage
 """
-This challenge uses matrix in GL(30, GF(2)) with small order, and it works like RSA
-We have matE = mat ^ E, so we need to find D such that DE = 1 mod ord(C) which C = GL(30, GF(2))
+This challenge uses matrix in GL(30, Z2) with small order, and it works like RSA
+We have matE = mat ^ E, so we need to find D such that DE = 1 mod ord(C) which C = GL(30, Z2)
 Find D and we done!
 """
 
