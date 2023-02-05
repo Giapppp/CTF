@@ -1,5 +1,7 @@
 When #E(Fp) = p, we can use Smart's Attack to solve ECDLP
 
-Resource: https://wstein.org/edu/2010/414/projects/novotney.pdf
+Resources: 
+https://wstein.org/edu/2010/414/projects/novotney.pdf
+https://crypto.stackexchange.com/questions/70454/why-smarts-attack-doesnt-work-on-this-ecdlp
 
 Code: https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/smart_attack.py
