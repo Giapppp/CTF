@@ -1,4 +1,4 @@
-When #E(Fp) = p, which is Anomalous Elliptic Curve, we can use Smart's Attack to solve ECDLP
+When #E(Fp) = p (or E.order() = p in Sagemath), which is Anomalous Elliptic Curve, we can use Smart's Attack to solve ECDLP
 
 Resources: 
 https://wstein.org/edu/2010/414/projects/novotney.pdf
