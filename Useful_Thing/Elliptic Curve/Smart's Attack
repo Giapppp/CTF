@@ -5,3 +5,5 @@ https://wstein.org/edu/2010/414/projects/novotney.pdf
 https://crypto.stackexchange.com/questions/70454/why-smarts-attack-doesnt-work-on-this-ecdlp
 
 Code: https://github.com/jvdsn/crypto-attacks/blob/master/attacks/ecc/smart_attack.py
+or you can use padic_elliptic_logarithm(Q, p) in Sagemath
+
