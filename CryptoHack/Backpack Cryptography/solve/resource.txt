@@ -1,2 +1,0 @@
-http://www.cs.sjsu.edu/faculty/stamp/papers/topics/topic16/Knapsack.pdf
-Chapter 7, part 13 in "An Introduction to Mathematical Cryptography", Jeffrey Hoffstein, Jill Pipher, Joseph H. Silverman
