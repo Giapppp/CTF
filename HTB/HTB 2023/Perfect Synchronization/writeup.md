@@ -49,9 +49,13 @@ Các bạn có thể suy ra một vài điều khi đọc file trên như sau:
 
 # 2. ECB (Electronic Codebook)
 Đây là chế độ mã hóa đơn giản nhất trong AES. Trong chế độ này, message sẽ được chia thành các khối bit có độ dài bằng nhau. Với mỗi khối dữ liệu, ta sẽ mã hóa từng khối với khóa cho trước để có được khối mã hóa tương ứng. 
+
 ![ECB](https://github.com/Giapppp/CTF/blob/main/HTB/HTB%202023/Perfect%20Synchronization/picture/Screenshot%202023-03-23%20231210.png)
+
 Vậy sử dụng ECB nguy hiểm đến mức nào ? Việc mã hóa từng khối theo một cách tuần tự có thể khiến cho dữ liệu bị lộ cấu trúc, để có thể hình dung rõ hơn về việc bị lộ cấu trúc, các bạn có thể xem qua bức ảnh này:
+
 ![Penguin](https://github.com/Giapppp/CTF/blob/main/HTB/HTB%202023/Perfect%20Synchronization/picture/Screenshot%202023-03-23%20231338.png)
+
 Có thể thấy với việc sử dụng ECB, cấu trúc dữ liệu có thể bị lộ ra. Nếu như attacker biết một vài thông tin về dữ liệu, khả năng cao họ sẽ có thể khôi phục lại dữ liệu đó, đây chính là điều mà chúng ta dùng để giải quyết challenge này
  # 3. Khai thác thông tin
 Kiến thức đã có đủ, ta bắt đầu làm bài thôi!
