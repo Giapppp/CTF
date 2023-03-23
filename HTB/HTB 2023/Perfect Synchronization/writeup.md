@@ -71,7 +71,7 @@ with open("output.txt", "r") as f:
 cts = [bytes.fromhex(ct[:2]) for ct in cts]
 ```
 
-MESSAGE được cấu tạo từ 26 chữ cái viết hoa cùng với các kí tự { } _  và khoảng trắng (các kí tự { _ } nằm trong flag). Vì ý nghĩa của khoảng trắng và _ là như nhau nên mình sẽ bỏ _ đi, vậy MESSAGE chỉ được cấu tạo từ 29 kí tự khác nhau.
+MESSAGE được cấu tạo từ 26 chữ cái viết hoa cùng với các kí tự { } _  và khoảng trắng (các kí tự { _ } nằm trong flag). Vì ý nghĩa của khoảng trắng và _ là như nhau nên mình sẽ bỏ _ đi, vậy MESSAGE được cấu tạo từ 29 kí tự khác nhau.
 
 Vì được mã hóa bằng ECB, các byte đầu của ciphertext (thông tin được mã hóa) sẽ có cùng tính chất với MESSAGE, tức là được cấu tạo từ 29 kí tự khác nhau. Ta có thể kiểm tra:
 
