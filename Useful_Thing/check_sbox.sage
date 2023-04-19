@@ -2,7 +2,7 @@ sbox = (...)
 
 from crypto.sbox import SBox
 S = SBox(AES.sbox)
-print(S.polynomials(groebner=True)
+print(S.polynomials(groebner=True))
 
 """
 If sbox look weak (1), it is linear and will satisfy the equation:
