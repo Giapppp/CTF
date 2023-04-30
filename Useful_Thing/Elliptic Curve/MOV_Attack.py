@@ -4,7 +4,7 @@ When the embedding degree k is small, we can use MOV Attack to transfer the disc
 Resource: https://crypto.stanford.edu/pbc/notes/elliptic/movattack.html
 """
 
-#Code: From ConnerM
+#Code: From ConnorM
 #----------------------------------------------------------------------------#
 #Check the embedding 
 k = 1
