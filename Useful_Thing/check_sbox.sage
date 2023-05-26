@@ -1,7 +1,7 @@
 sbox = (...)
 
 from crypto.sbox import SBox
-S = SBox(AES.sbox)
+S = SBox(sbox)
 print(S.polynomials(groebner=True))
 
 """
