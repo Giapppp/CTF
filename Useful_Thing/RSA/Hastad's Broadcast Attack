@@ -13,18 +13,6 @@ from   sage.arith.functions  import lcm
 from   Crypto.Util.number    import *
 import concurrent.futures
 
-"""
-    /function/ crt_2():
-
-    "" Purpose:
-        Modified from Sage's crt() function.
-        Returns CRT value with moduli instead of just CRT.
-
-    "" Args:
-        a, b: Remainder 1 and 2
-        m, n: Modulus   1 and 2
-"""
-
 def crt_2(a, b, m=None, n=None):
     try:
         f = (b-a).quo_rem
@@ -44,18 +32,6 @@ def crt_2(a, b, m=None, n=None):
     l = lcm(m, n)
     return x % l, l
 
-"""
-    /function/ crt_():
-
-    "" Purpose:
-        Modified from Sage's CRT_list() function.
-        Returns CRT value with moduli instead of just CRT.
-
-    "" Args:
-        r: List of remainders.
-        m: List of modulus.
-"""
-
 def crt_(r, m):
     res  = r[0]
     prod = m[0]
@@ -63,28 +39,6 @@ def crt_(r, m):
         res, prod = crt_2(res, r[i], prod, m[i])
     return res % prod, prod
 
-"""
-    /function/ CRT_():
-
-    "" Purpose:
-        Function that calculates CRT on chunks of <SEG_SIZE> numbers in the array
-        rather than the whole array at once. The goal is to reduce long multiplication
-        time.
-
-        Works pretty nice with big array and (probably) big number.
-        Test: 65537 1024-bit numbers on a single core  -> 3 mins 15 seconds.
-        Test: 65537 1024-bit numbers on 8 cores        -> 1 mins 2 seconds.
-
-        Built on the base of Sage's crt() function.
-
-    "" Args:
-        r:             List of remainders.
-        m:             List of modulus.
-        SEG_SIZE=12:   Number of values that CRT should work on once at a time.
-        NO_CORES=8:    Number of cores in your machine.
-        debug=False:   Print out some debug data.
-
-"""
 def CRT_(r: list, m: list, SEG_SIZE=12, NO_CORES=8, debug=False):
     assert len(r) == len(m) >= 2
     assert SEG_SIZE > 1
