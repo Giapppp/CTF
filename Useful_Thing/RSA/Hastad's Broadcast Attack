@@ -6,6 +6,7 @@ resource: https://mistsuu.github.io/Cryptsu/writeups/isitdtu-final/Dat%20is%20sa
 
 python3 code:
 
+######################################################################
 from   sage.all              import *
 from   sage.structure.coerce import py_scalar_to_element
 from   sage.arith.functions  import lcm
@@ -120,3 +121,6 @@ def CRT_(r: list, m: list, SEG_SIZE=12, NO_CORES=8, debug=False):
         print(f'[ i ] Finished :D')
 
     return r[0]
+######################################################################
+
+Mistsu is crazy :))))
