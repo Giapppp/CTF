@@ -1,2 +1,122 @@
 resource: https://www.ams.org/notices/199902/boneh.pdf, page 6
 When e is small and we have n pairs (N_i, c_i), we can use CRT theorem to find the message m 
+
+Sometimes, we have too much pairs (N_i, c_i), so sage CRT or sympy can't find it under 1 hour (too long :((). So we need to config it a little bit
+resource: https://mistsuu.github.io/Cryptsu/writeups/isitdtu-final/Dat%20is%20sad/
+
+python3 code:
+
+from   sage.all              import *
+from   sage.structure.coerce import py_scalar_to_element
+from   sage.arith.functions  import lcm
+from   Crypto.Util.number    import *
+import concurrent.futures
+
+"""
+    /function/ crt_2():
+
+    "" Purpose:
+        Modified from Sage's crt() function.
+        Returns CRT value with moduli instead of just CRT.
+
+    "" Args:
+        a, b: Remainder 1 and 2
+        m, n: Modulus   1 and 2
+"""
+
+def crt_2(a, b, m=None, n=None):
+    try:
+        f = (b-a).quo_rem
+    except (TypeError, AttributeError):
+        # Maybe there is no coercion between a and b.
+        # Maybe (b-a) does not have a quo_rem attribute
+        a = py_scalar_to_element(a)
+        b = py_scalar_to_element(b)
+        f = (b-a).quo_rem
+
+    g, alpha, beta = xgcd(m, n)
+    q, r = f(g)
+    if r != 0:
+        raise ValueError("No solution to crt problem since gcd(%s,%s) does not divide %s-%s" % (m, n, a, b))
+
+    x = a + q*alpha*py_scalar_to_element(m)
+    l = lcm(m, n)
+    return x % l, l
+
+"""
+    /function/ crt_():
+
+    "" Purpose:
+        Modified from Sage's CRT_list() function.
+        Returns CRT value with moduli instead of just CRT.
+
+    "" Args:
+        r: List of remainders.
+        m: List of modulus.
+"""
+
+def crt_(r, m):
+    res  = r[0]
+    prod = m[0]
+    for i in range(1, len(r)):
+        res, prod = crt_2(res, r[i], prod, m[i])
+    return res % prod, prod
+
+"""
+    /function/ CRT_():
+
+    "" Purpose:
+        Function that calculates CRT on chunks of <SEG_SIZE> numbers in the array
+        rather than the whole array at once. The goal is to reduce long multiplication
+        time.
+
+        Works pretty nice with big array and (probably) big number.
+        Test: 65537 1024-bit numbers on a single core  -> 3 mins 15 seconds.
+        Test: 65537 1024-bit numbers on 8 cores        -> 1 mins 2 seconds.
+
+        Built on the base of Sage's crt() function.
+
+    "" Args:
+        r:             List of remainders.
+        m:             List of modulus.
+        SEG_SIZE=12:   Number of values that CRT should work on once at a time.
+        NO_CORES=8:    Number of cores in your machine.
+        debug=False:   Print out some debug data.
+
+"""
+def CRT_(r: list, m: list, SEG_SIZE=12, NO_CORES=8, debug=False):
+    assert len(r) == len(m) >= 2
+    assert SEG_SIZE > 1
+
+    if debug:
+        print(f'[ i ] Calculate CRT with chunk size {SEG_SIZE}...')
+        print(f'[ i ] Start loop with len = {len(r)}')
+
+    with concurrent.futures.ProcessPoolExecutor(NO_CORES) as executor:
+        while len(r) != 1:
+            newR = []
+            newM = []
+            futures = []
+            for i in range(0, len(r), SEG_SIZE):
+                if len(r) - i == 1:
+                    newR.append(r[i])
+                    newM.append(m[i])
+                else:
+                    futures.append(executor.submit(crt_, r[i:i+SEG_SIZE], m[i:i+SEG_SIZE]))
+
+            # Obtain processes' results :3
+            for future in futures:
+                result = future.result()
+                newR.append(result[0])
+                newM.append(result[1])
+
+            r = newR
+            m = newM
+
+            if debug:
+                print(f'[ i ] Update loop with len = {len(r)}')
+
+    if debug:
+        print(f'[ i ] Finished :D')
+
+    return r[0]
