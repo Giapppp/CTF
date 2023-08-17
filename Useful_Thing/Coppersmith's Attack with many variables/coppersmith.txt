@@ -1,0 +1,10 @@
+You should try many implementations, cuz sometimes this one isn't work, but another one will !
+
+Defund: https://github.com/defund/coppersmith/blob/master/coppersmith.sage
+Kiona: https://github.com/kionactf/coppersmith
+Joseph: https://github.com/josephsurin/lattice-based-cryptanalysis/blob/main/lbc_toolkit/problems/small_roots.sage
+jvdsn: https://github.com/jvdsn/crypto-attacks/tree/master/shared/small_roots
+rbtree: https://gist.github.com/chrsow/f766786bfcb0034d8c6c9372b822222c (because this was wrote in python2 and sage, so you need to fix it a bit to work in python3)
+ConnorM: https://github.com/Connor-McCartney/coppersmith/blob/main/coppersmith.sage
+
+Coppersmith's Attack with one variable is easy with sage function .small_roots(), but with many variables is a nightmare :D
